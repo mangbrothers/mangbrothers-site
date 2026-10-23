@@ -22,20 +22,20 @@ Not the cheapest, the most dependable. One local crew, one phone number, every s
 - Hosted as a static site on GitHub Pages; launch October 22, 2026.
 
 ## Capabilities and Constraints
-- **The phone call is the only action.** No forms, no booking flow, no texting option. Click-to-call and email only.
+- **The phone call is the main action.** No forms or booking flow. Click-to-call first; text (sms:) and email are secondary. The only outbound link is "Partner With Us" (https://apps.mangbrothers.com/connect/) for investors and partners.
 - **Starting prices stay on the site** for every standardized service.
-- Static HTML/CSS/JS, no CMS, no build step.
+- Astro static build, deployed to GitHub Pages by a GitHub Action. No CMS.
 - Undecided: analytics on call/email taps (Google Analytics pending an account).
 
 ## Brand Commitments
 - Name: Mangiapane Brothers Lawn and Snow LLC. Tagline, used verbatim or not at all: "Reliable Service. Uncompromising Standards."
-- Existing oak-tree logo (preview/img/logo.png, logo-white.png) and brand green #1B4D2E.
+- Oak-tree logo kit and palette from the Mangiapane Brothers design system (design/design-system/). Brand oak #023A1D.
 - Copy reads like a trusted neighbor who runs a professional operation: plain, direct, no corporate jargon.
 
 ## Evidence on Hand
-- Real photo of the three brothers (preview/img/brothers.jpg).
-- Four real before/after job photo pairs (preview/img/work/); originals without baked-in labels still to be found.
-- Published prices from the 2026 price sheets (lawn from $55 a cut; fall cleanup $435/$595; snow $550/$590 with capped totals; lights from $625).
+- Real photo of the three brothers (src/assets/brothers.jpg).
+- Before/after job photos exist in git history (old preview/img/work/); not used in the MVP.
+- Published prices from the 2026 price sheets (lawn from $55 a cut; fall cleanup $435/$595; snow $550/$590 with capped totals; lights from $645).
 - Founded 2019, based in Livonia, fully insured.
 - **No customer reviews or testimonials exist yet.** Do not invent reviews, ratings, customer counts, or awards.
 - No fall or snow job photos yet.

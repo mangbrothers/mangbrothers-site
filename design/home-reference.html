@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Home page, desktop</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;500;600&amp;family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&amp;display=swap">
+<style>
+body{margin:0;background:#EADDC5;font-family:"Libre Franklin",Arial,sans-serif;font-weight:300;color:#1A1C18}
+a{color:#4E220C}a:hover{color:#023A1D}
+#svc-lawn{border-top:none!important}
+.mb-band-link{transition:color .2s}.mb-band-link:hover{color:#C9A15A!important;text-decoration:underline!important;text-underline-offset:6px}
+.mb-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;position:relative;box-sizing:border-box;border-radius:4px;padding:16px 27px;font-family:"Libre Franklin",Arial,sans-serif;font-weight:500;font-size:14px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;background:transparent;transition:background-color .25s cubic-bezier(.1,.4,.2,1),transform .25s cubic-bezier(.1,.4,.2,1),box-shadow .25s cubic-bezier(.1,.4,.2,1)}
+.mb-btn>svg{margin-left:-3px;transform:translateY(1px);stroke:#C9A15A}
+.mb-btn:hover{transform:translateY(-1px)}
+.mb-btn:active{transform:translateY(2px) scale(.985);transition-duration:.08s}
+.mb-btn:focus-visible{outline:2px solid currentColor;outline-offset:3px}
+.mb-call{color:#EADDC5;border:1px solid #C9A15A}
+.mb-call:hover{background:rgba(234,221,197,.1);box-shadow:inset 0 -1.5px 0 #C9A15A,0 6px 16px rgba(26,28,24,.16)}
+.mb-call-light{color:#4E220C;border:1px solid #4E220C;box-shadow:inset 0 -1px 0 #C9A15A}
+.mb-call-light:hover{background:rgba(78,34,12,.05);box-shadow:inset 0 -2px 0 #C9A15A,0 6px 16px rgba(26,28,24,.16)}
+.mb-ghost{color:#EADDC5;border:1px solid rgba(234,221,197,.6)}
+.mb-ghost:hover{background:rgba(234,221,197,.1)}
+.mb-callbar .mb-call{background:rgba(201,161,90,.16)}
+.mb-call:hover,.mb-ghost:hover,.mb-call:active,.mb-ghost:active{color:#EADDC5}
+.mb-call-light:hover,.mb-call-light:active{color:#4E220C}
+@media (prefers-reduced-motion: reduce){.mb-btn,.mb-btn:hover,.mb-btn:active{transform:none!important}}
+@media (max-width: 760px){
+.mb-header{padding:20px 20px!important;flex-wrap:nowrap!important}
+.mb-logo{height:40px!important}
+.mb-navlinks{display:none!important}
+.mb-menu{display:block!important}
+.mb-hero-copy{padding:0 20px 112px!important;justify-content:center!important}
+.mb-eyebrow{font-size:12px!important;margin-bottom:16px!important}
+.mb-h1{font-size:38px!important;line-height:1.08!important}
+.mb-sub{font-size:17px!important}
+.mb-callbar{display:flex!important}
+.mb-svc-left{position:static!important}
+.mb-svc-tree{width:380px!important;left:auto!important;right:-80px!important;bottom:-40px!important}
+.mb-svc{padding:0 16px 16px!important;margin-top:-56px!important}
+.mb-svc-card{border-radius:14px!important}
+.mb-svc-panel{flex:1 1 100%!important;padding:24px 16px 16px!important}
+.mb-svc-left{padding:32px 24px!important}
+.mb-svc-left h2{font-size:40px!important}
+.mb-svc-list{padding:8px 24px 48px!important}
+.mb-svc-divider{display:none!important}
+.mb-svc-band{display:none!important}
+.mb-row-name{font-size:32px!important}
+.mb-row-price{font-size:22px!important}
+.mb-row-top{flex-direction:column!important;gap:6px!important}
+.mb-leader{display:none!important}
+.mb-row-name{white-space:normal!important}
+.mb-hero{height:560px!important;min-height:0!important}
+.mb-eyebrow,.mb-hero-btns .mb-ghost{display:none!important}
+.mb-hero-btns{margin-top:28px!important}
+.mb-svc{padding:0!important;margin-top:-24px!important}
+.mb-svc-card{border-radius:20px 20px 0 0!important}
+.mb-svc-panel{padding:48px 24px 8px!important}
+.mb-svc-left{padding:0!important;background:none!important;border:none!important;gap:16px!important}
+.mb-svc-intro,.mb-svc-call{display:none!important}
+.mb-season{margin-top:8px!important;padding-top:20px!important}
+.mb-season p{font-size:16px!important}
+.mb-svc-list{padding:8px 24px 40px!important}
+.mb-row{padding:24px 0!important}
+.mb-row-sum{cursor:pointer;gap:10px!important;padding-right:36px}
+.mb-row-top{gap:4px!important}
+.mb-row-name{font-size:30px!important}
+.mb-row-price{font-size:20px!important}
+.mb-chev{display:block!important;position:absolute;right:0;top:10px;transition:transform .25s cubic-bezier(.1,.4,.2,1)}
+.mb-row[open] .mb-chev{transform:rotate(180deg)}
+.mb-row-desc{font-size:16px!important;margin-top:12px!important}
+.mb-about{padding:72px 16px 72px!important;gap:32px!important}
+.mb-about-photo{flex:1 1 100%!important;border-radius:12px!important}
+.mb-about-text{flex:1 1 100%!important;padding:0 8px;gap:20px!important}
+.mb-about-text h2{font-size:40px!important}
+.mb-contact{padding:72px 24px!important;gap:20px!important}
+.mb-contact h2{font-size:40px!important}
+.mb-contact-eyebrow,.mb-contact-btns{display:none!important}
+.mb-contact-num{font-size:36px!important}
+.mb-foot{padding:40px 24px 120px!important;gap:28px!important}
+.mb-foot-links{display:none!important}
+.mb-foot-tap{padding:14px 0}
+.mb-herocall{min-height:48px}
+}
+@media (max-width:760px){@supports (animation-timeline: scroll()){
+.mb-callbar{animation:mb-bar-in linear both;animation-timeline:scroll(root);animation-range:440px 520px}
+@keyframes mb-bar-in{from{transform:translateY(100%);opacity:0}to{transform:none;opacity:1}}}}
+.mb-row-sum::-webkit-details-marker,.mb-menu summary::-webkit-details-marker{display:none}
+.mb-chev{display:none}
+@media (min-width:761px){.mb-row-sum{pointer-events:none}}
+html,body{scroll-behavior:smooth}
+#services,#about,#contact,[id^="svc-"]{scroll-margin-top:80px}
+@media (max-width:760px){#services,#about,#contact,[id^="svc-"]{scroll-margin-top:48px}}
+@media (prefers-reduced-motion:reduce){html,body{scroll-behavior:auto}}
+
+/* motion */
+.mb-nav-a{position:relative;transition:color .2s}
+.mb-nav-a::after{content:"";position:absolute;left:0;right:0;bottom:-8px;height:1px;background:#C9A15A;transform:scaleX(0);transform-origin:left;transition:transform .35s cubic-bezier(.16,1,.3,1)}
+.mb-nav-a:hover::after,.mb-nav-a:focus-visible::after{transform:scaleX(1)}
+.mb-nav-a:hover{color:#EADDC5!important}
+.mb-nav-a[aria-current]::after{transform:scaleX(1);animation:mb-draw .7s cubic-bezier(.16,1,.3,1) .9s backwards}
+.mb-navlinks:hover .mb-nav-a[aria-current]:not(:hover)::after{transform:scaleX(0);transform-origin:right}
+@keyframes mb-draw{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes mb-settle{from{transform:scale(1.06)}to{transform:none}}
+@keyframes mb-rise{from{opacity:0;transform:translateY(14px);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
+.mb-hero-img{animation:mb-settle 2.2s cubic-bezier(.16,1,.3,1) both}
+.mb-eyebrow,.mb-h1,.mb-sub,.mb-hero-btns{animation:mb-rise .8s cubic-bezier(.16,1,.3,1) both}
+.mb-eyebrow{animation-delay:.15s}.mb-h1{animation-delay:.25s}.mb-sub{animation-delay:.4s}.mb-hero-btns{animation-delay:.52s}
+@keyframes mb-lift{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.mb-svc{animation:mb-lift .9s cubic-bezier(.16,1,.3,1) .6s backwards}
+.mb-leader{transition:border-color .35s}
+.mb-row-name,.mb-row-price{transition:transform .35s cubic-bezier(.16,1,.3,1)}
+@media (hover:hover) and (min-width:761px){
+.mb-row:hover .mb-leader{border-bottom-color:rgba(201,161,90,.7)!important}
+.mb-row:hover .mb-row-name{transform:translateX(6px)}
+.mb-row:hover .mb-row-price{transform:translateX(-4px)}}
+@keyframes mb-pulse{0%{box-shadow:0 0 0 0 rgba(234,221,197,.45)}70%,100%{box-shadow:0 0 0 7px rgba(234,221,197,0)}}
+.mb-dot-live{animation:mb-pulse 2.4s cubic-bezier(.16,1,.3,1) infinite}
+@media (max-width:760px){.mb-row[open] .mb-row-desc{animation:mb-rise .4s cubic-bezier(.16,1,.3,1) both}}
+@supports (animation-timeline: view()){
+@keyframes mb-in{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@keyframes mb-unveil{from{clip-path:inset(10% 6% 10% 6% round 16px)}to{clip-path:inset(0 0 0 0 round 16px)}}
+.mb-row,.mb-about-text,.mb-reveal,.mb-contact-num{animation:mb-in linear both;animation-timeline:view();animation-range:entry 0% entry 70%}
+.mb-about-photo{animation:mb-unveil linear both;animation-timeline:view();animation-range:entry 0% cover 40%}}
+@keyframes mb-fade{from{opacity:0}to{opacity:1}}
+@media (max-width:760px){.mb-hero-img{display:none!important}.mb-hero{background:#1A1C18 url("../src/assets/hero-backyard.jpg") 50% 70%/cover no-repeat!important}.mb-svc{animation:none!important;transform:none!important}.mb-h1,.mb-sub,.mb-hero-btns{animation-name:mb-lift}}
+@media (prefers-reduced-motion: reduce){
+.mb-nav-a::after,.mb-hero-img,.mb-svc,.mb-dot-live,.mb-row,.mb-about-text,.mb-about-photo,.mb-reveal,.mb-contact-num,.mb-row-desc{animation:none!important}
+.mb-eyebrow,.mb-h1,.mb-sub,.mb-hero-btns{animation:mb-fade .6s ease both!important}
+.mb-row-name,.mb-row-price{transform:none!important}}
+</style>
+</helmet>
+<div style="width: 100%; background: #EADDC5; display: flex; flex-direction: column">
+
+  <section class="mb-hero" style="position: relative; z-index: 0; isolation: isolate; width: 100%; min-height: 640px; height: min(900px, 100vh); overflow: hidden; display: flex; flex-direction: column; background: #1A1C18; color: #EADDC5">
+    <img src="../src/assets/hero-backyard.jpg" alt="A manicured backyard lawn and garden beds at golden hour" class="mb-hero-img" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 70%">
+    <div style="position: absolute; inset: 0; background: rgba(26, 28, 24, 0.45)" aria-hidden="true"></div>
+    <header class="mb-header" style="position: relative; box-sizing: border-box; width: 100%; padding: 28px 48px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px">
+      <a href="#" aria-label="Mangiapane Brothers home" style="display: flex"><img src="../src/assets/logo-horizontal-cream.svg" alt="Mangiapane Brothers Lawn and Snow" class="mb-logo" style="height: 48px; width: auto; display: block"></a>
+      <nav class="mb-navlinks" style="display: flex; flex-wrap: wrap; align-items: center; gap: 32px; font-size: 16px">
+        <a href="#" aria-current="page" class="mb-nav-a" style="color: #EADDC5; text-decoration: none">Home</a>
+        <a href="#services" class="mb-nav-a" style="color: #EADDC5; text-decoration: none">Services</a>
+        <a href="#about" class="mb-nav-a" style="color: #EADDC5; text-decoration: none">About</a>
+        <a href="https://apps.mangbrothers.com/connect/" class="mb-nav-a" style="color: #EADDC5; text-decoration: none">Partner With Us</a>
+        <span style="width: 1px; height: 24px; background: rgba(234, 221, 197, 0.35)" aria-hidden="true"></span>
+        <a href="tel:+17344502400" style="display: inline-flex; align-items: center; gap: 8px; color: #EADDC5; letter-spacing: 0.01em; text-decoration: none; font-size: 16px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"></path></svg>(734) 450-2400</a>
+      </nav>
+      <details class="mb-menu" style="display: none; position: relative">
+        <summary aria-label="Menu" style="list-style: none; width: 44px; height: 44px; box-sizing: border-box; border-radius: 4px; border: 1px solid rgba(234, 221, 197, 0.6); color: #EADDC5; display: flex; align-items: center; justify-content: center; cursor: pointer">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M4 8h16M4 16h16"></path></svg>
+        </summary>
+        <nav aria-label="Menu" style="position: absolute; right: 0; top: 54px; z-index: 20; width: 220px; box-sizing: border-box; padding: 6px 20px 10px; border-radius: 12px; background: #023A1D; border: 1px solid rgba(234, 221, 197, 0.16); box-shadow: 0 12px 32px rgba(26, 28, 24, 0.35); display: flex; flex-direction: column; font-size: 17px">
+          <a href="#services" class="mb-menu-first" style="color: #EADDC5; text-decoration: none; padding: 14px 4px">Services</a>
+          <a href="#about" style="color: #EADDC5; text-decoration: none; padding: 14px 4px; border-top: 1px solid rgba(234, 221, 197, 0.15)">About</a>
+          <a href="https://apps.mangbrothers.com/connect/" style="color: #EADDC5; text-decoration: none; padding: 14px 4px; border-top: 1px solid rgba(234, 221, 197, 0.15)">Partner With Us</a>
+        </nav>
+      </details>
+    </header>
+    <div class="mb-hero-copy" style="position: relative; flex-grow: 1; box-sizing: border-box; padding: 0 48px 200px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 0">
+      <div class="mb-eyebrow" style="font-size: 13px; font-weight: 500; letter-spacing: 0.03em; color: #EADDC5; margin-bottom: 22px; text-wrap: balance">RELIABLE SERVICE. UNCOMPROMISING STANDARDS.</div>
+      <h1 class="mb-h1" style="margin: 0; font-family: Newsreader, Georgia, serif; font-optical-sizing: auto; font-weight: 300; font-size: 70px; line-height: 1.04; letter-spacing: -0.02em; color: #EADDC5; max-width: 1120px; text-wrap: balance">Full-service property maintenance for those who take pride in their home.</h1>
+      <p class="mb-sub" style="margin: 20px 0 0; font-weight: 300; font-size: 18px; line-height: 1.55; color: #EADDC5; max-width: 760px; text-wrap: balance">Lawn, fall cleanup, snow, Christmas lights, and landscaping in Livonia and Westland.</p>
+      <div class="mb-hero-btns" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 36px">
+        <a href="tel:+17344502400" class="mb-btn mb-call mb-herocall"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"></path></svg>(734) 450-2400</a>
+        <a class="mb-btn mb-ghost" href="#services">Our services</a>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="services" class="mb-svc" style="box-sizing: border-box; width: 100%; padding: 0 48px 48px; margin-top: -60px; position: relative; z-index: 2">
+  <div class="mb-svc-card" style="display: flex; flex-wrap: wrap; align-items: stretch; background: #023A1D; color: #EADDC5; border-radius: 20px; overflow: clip">
+    <nav class="mb-svc-band" aria-label="Jump to a service" style="flex: 1 1 100%; box-sizing: border-box; padding: 24px 64px; border-bottom: 1px solid rgba(234, 221, 197, 0.15); display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 12px 32px; font-size: 13px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase">
+        <a href="#svc-lawn" class="mb-band-link" style="color: #EADDC5; text-decoration: none">Lawn care</a>
+        <span style="width: 3px; height: 3px; border-radius: 50%; background: #C9A15A" aria-hidden="true"></span>
+        <a href="#svc-fall" class="mb-band-link" style="color: #EADDC5; text-decoration: none">Fall cleanup</a>
+        <span style="width: 3px; height: 3px; border-radius: 50%; background: #C9A15A" aria-hidden="true"></span>
+        <a href="#svc-snow" class="mb-band-link" style="color: #EADDC5; text-decoration: none">Snow removal</a>
+        <span style="width: 3px; height: 3px; border-radius: 50%; background: #C9A15A" aria-hidden="true"></span>
+        <a href="#svc-lights" class="mb-band-link" style="color: #EADDC5; text-decoration: none">Christmas lights</a>
+        <span style="width: 3px; height: 3px; border-radius: 50%; background: #C9A15A" aria-hidden="true"></span>
+        <a href="#svc-landscaping" class="mb-band-link" style="color: #EADDC5; text-decoration: none">Landscaping</a>
+    </nav>
+    
+    <div class="mb-svc-panel" style="position: relative; overflow: clip; flex: 0 1 520px; min-width: 0; box-sizing: border-box; padding: 32px 48px 64px 64px; background: transparent; color: #EADDC5">
+      <img src="../src/assets/tree-cream.svg" alt="" aria-hidden="true" class="mb-svc-tree" style="position: absolute; left: -120px; bottom: -60px; width: 720px; height: auto; opacity: 0.08; pointer-events: none">
+      <div class="mb-svc-left" style="position: sticky; top: 48px; z-index: 1; display: flex; flex-direction: column; gap: 22px; padding: 40px 36px; border-radius: 14px; background: rgba(234, 221, 197, 0.06); border: 1px solid rgba(234, 221, 197, 0.16)">
+        <div style="font-size: 13px; font-weight: 500; letter-spacing: 0.03em; color: #C9A15A">SERVICES</div>
+        <h2 style="margin: 0; font-family: Newsreader, Georgia, serif; font-optical-sizing: auto; font-weight: 300; font-size: 56px; line-height: 1.06; letter-spacing: -0.02em; color: #EADDC5">Every season, taken care of.</h2>
+        <p class="mb-svc-intro" style="margin: 0; font-weight: 300; font-size: 17px; line-height: 1.55; color: #EADDC5; max-width: 400px">Each service is priced up front and scheduled in advance. Call once and your property is handled from spring to the last snowfall.</p>
+        <a class="mb-btn mb-call mb-svc-call" href="tel:+17344502400" style="align-self: flex-start; margin-top: 8px">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"></path></svg>
+          (734) 450-2400
+        </a>
+        <div class="mb-season" style="margin-top: 28px; padding-top: 24px; border-top: 1px solid rgba(234, 221, 197, 0.25); display: flex; flex-direction: column; gap: 8px; max-width: 400px">
+          <span style="font-size: 15px; font-weight: 500; color: #C9A15A">This season</span>
+          <p style="margin: 0; font-weight: 300; font-size: 17px; line-height: 1.55; color: #EADDC5">Fall cleanup visits are underway, and 2026–27 snow contracts are open. Christmas lights book through mid-November.</p>
+        </div>
+      </div>
+    </div>
+    <div class="mb-svc-list" style="flex: 1 1 600px; min-width: 0; box-sizing: border-box; padding: 8px 64px 64px 72px; position: relative">
+      <span class="mb-svc-divider" aria-hidden="true" style="position: absolute; left: 0; top: 32px; bottom: 64px; width: 1px; background: rgba(234, 221, 197, 0.2)"></span>
+    <div class="mb-rows" style="display: flex; flex-direction: column; border-bottom: 1px solid rgba(234, 221, 197, 0.2)">
+      <details open id="svc-lawn" class="mb-row" style="display: block; padding: 40px 0; border-top: 1px solid rgba(234, 221, 197, 0.2); color: #EADDC5">
+        <summary class="mb-row-sum" style="position: relative; list-style: none; display: flex; flex-direction: column; gap: 16px">
+          <div class="mb-row-top" style="display: flex; align-items: baseline; gap: 20px">
+            <h3 class="mb-row-name" style="margin: 0; font-family: Newsreader, Georgia, serif; font-optical-sizing: auto; font-weight: 300; font-size: 44px; line-height: 1.08; letter-spacing: -0.02em; color: #EADDC5; white-space: nowrap">Lawn care</h3>
+            <span class="mb-leader" style="flex: 1; min-width: 24px; border-bottom: 1.5px dotted rgba(234, 221, 197, 0.35); transform: translateY(-8px)" aria-hidden="true"></span>
+            <span class="mb-row-price" style="font-family: Newsreader, Georgia, serif; font-optical-sizing: auto; font-weight: 300; font-size: 30px; color: #C9A15A; white-space: nowrap">From $55</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px; font-size: 15px">
+            <span class="mb-dot-live" style="width: 8px; height: 8px; border-radius: 50%; background: #EADDC5; flex-shrink: 0" aria-hidden="true"></span>
+            <span style="font-weight: 500; color: #EADDC5">In season now</span>
+            <span style="color: rgba(234, 221, 197, 0.5)" aria-hidden="true">·</span>
+            <span style="font-weight: 400; color: rgba(234, 221, 197, 0.8)">April to November</span>
+          </div>
+          <svg class="mb-chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C9A15A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>
+        </summary>
+        <p class="mb-row-desc" style="margin: 16px 0 0; font-weight: 300; font-size: 17px; line-height: 1.55; max-width: 560px">Weekly or every other week. Mowed, edged, and blown clean.</p>
+      </details>
+      <details open id="svc-fall" class="mb-row" style="display: block; padding: 40px 0; border-top: 1px solid rgba(234, 221, 197, 0.2); color: #EADDC5">
+        <summary class="mb-row-sum" style="position: relative; list-style: none; display: flex; flex-direction: column; gap: 16px">
+          <div class="mb-row-top" style="display: flex; align-items: baseline; gap: 20px">
+            <h3 class="mb-row-name" style="margin: 0; font-family: Newsreader, Georgia, serif; font-optical-sizing: auto; font-weight: 300; font-size: 44px; line-height: 1.08; letter-spacing: -0.02em; color: #EADDC5; white-space: nowrap">Fall cleanup</h3>
+            <span class="mb-leader" style="flex: 1; min-width: 24px; border-bottom: 1.5px dotted rgba(234, 221, 197, 0.35); transform: translateY(-8px)" aria-hidden="true"></span>
+            <span class="mb-row-price" style="font-family: Newsreader, Georgia, serif; font-optical-sizing: auto; font-weight: 300; font-size: 30px; color: #C9A15A; white-space: nowrap">From $435</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px; font-size: 15px">
+            <span class="mb-dot-live" style="width: 8px; height: 8px; border-radius: 50%; background: #EADDC5; flex-shrink: 0" aria-hidden="true"></span>
+            <span style="font-weight: 500; color: #EADDC5">In season now</span>
+            <span style="color: rgba(234, 221, 197, 0.5)" aria-hidden="true">·</span>
+            <span style="font-weight: 400; color: rgba(234, 221, 197, 0.8)">Visits through November</span>
+          </div>
+          <svg class="mb-chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C9A15A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>
+        </summary>
+        <p class="mb-row-desc" style="margin: 16px 0 0; font-weight: 300; font-size: 17px; line-height: 1.55; max-width: 560px">Two visits timed to your section's city leaf pickup, with gutter cleaning included on the final visit.</p>
+      </details>
+      <details open id="svc-snow" class="mb-row" style="display: block; padding: 40px 0; border-top: 1px solid rgba(234, 221, 197, 0.2); color: #EADDC5">
+        <summary class="mb-row-sum" style="position: relative; list-style: none; display: flex; flex-direction: column; gap: 16px">
+          <div class="mb-row-top" style="display: flex; align-items: baseline; gap: 20px">
+            <h3 class="mb-row-name" style="margin: 0; font-family: Newsreader, Georgia, serif; font-optical-sizing: auto; font-weight: 300; font-size: 44px; line-height: 1.08; letter-spacing: -0.02em; color: #EADDC5; white-space: nowrap">Snow removal</h3>
+            <span class="mb-leader" style="flex: 1; min-width: 24px; border-bottom: 1.5px dotted rgba(234, 221, 197, 0.35); transform: translateY(-8px)" aria-hidden="true"></span>
+            <span class="mb-row-price" style="font-family: Newsreader, Georgia, serif; font-optical-sizing: auto; font-weight: 300; font-size: 30px; color: #C9A15A; white-space: nowrap">From $550</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px; font-size: 15px">
+            <span style="width: 8px; height: 8px; border-radius: 50%; background: #C9A15A; flex-shrink: 0" aria-hidden="true"></span>
+            <span style="font-weight: 500; color: #EADDC5">Booking now</span>
+            <span style="color: rgba(234, 221, 197, 0.5)" aria-hidden="true">·</span>
+            <span style="font-weight: 400; color: rgba(234, 221, 197, 0.8)">Starts November 1</span>
+          </div>
+          <svg class="mb-chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C9A15A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>
+        </summary>
+        <p class="mb-row-desc" style="margin: 16px 0 0; font-weight: 300; font-size: 17px; line-height: 1.55; max-width: 560px">Sixteen pushes and salt for the season, with a capped total. Cleared within 24 hours of the storm ending.</p>
+      </details>
+      <details open id="svc-lights" class="mb-row" style="display: block; padding: 40px 0; border-top: 1px solid rgba(234, 221, 197, 0.2); color: #EADDC5">
+        <summary class="mb-row-sum" style="position: relative; list-style: none; display: flex; flex-direction: column; gap: 16px">
+          <div class="mb-row-top" style="display: flex; align-items: baseline; gap: 20px">
+            <h3 class="mb-row-name" style="margin: 0; font-family: Newsreader, Georgia, serif; font-optical-sizing: auto; font-weight: 300; font-size: 44px; line-height: 1.08; letter-spacing: -0.02em; color: #EADDC5; white-space: nowrap">Christmas lights</h3>
+            <span class="mb-leader" style="flex: 1; min-width: 24px; border-bottom: 1.5px dotted rgba(234, 221, 197, 0.35); transform: translateY(-8px)" aria-hidden="true"></span>
+            <span class="mb-row-price" style="font-family: Newsreader, Georgia, serif; font-optical-sizing: auto; font-weight: 300; font-size: 30px; color: #C9A15A; white-space: nowrap">From $645</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px; font-size: 15px">
+            <span style="width: 8px; height: 8px; border-radius: 50%; background: #C9A15A; flex-shrink: 0" aria-hidden="true"></span>
+            <span style="font-weight: 500; color: #EADDC5">Booking now</span>
+            <span style="color: rgba(234, 221, 197, 0.5)" aria-hidden="true">·</span>
+            <span style="font-weight: 400; color: rgba(234, 221, 197, 0.8)">Installed in November</span>
+          </div>
+          <svg class="mb-chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C9A15A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>
+        </summary>
+        <p class="mb-row-desc" style="margin: 16px 0 0; font-weight: 300; font-size: 17px; line-height: 1.55; max-width: 560px">Installed, timed, and taken down in January. Every light lit by November 26.</p>
+      </details>
+      <details open id="svc-landscaping" class="mb-row" style="display: block; padding: 40px 0; border-top: 1px solid rgba(234, 221, 197, 0.2); color: #EADDC5">
+        <summary class="mb-row-sum" style="position: relative; list-style: none; display: flex; flex-direction: column; gap: 16px">
+          <div class="mb-row-top" style="display: flex; align-items: baseline; gap: 20px">
+            <h3 class="mb-row-name" style="margin: 0; font-family: Newsreader, Georgia, serif; font-optical-sizing: auto; font-weight: 300; font-size: 44px; line-height: 1.08; letter-spacing: -0.02em; color: #EADDC5; white-space: nowrap">Landscaping</h3>
+            <span class="mb-leader" style="flex: 1; min-width: 24px; border-bottom: 1.5px dotted rgba(234, 221, 197, 0.35); transform: translateY(-8px)" aria-hidden="true"></span>
+            <span class="mb-row-price" style="font-family: Newsreader, Georgia, serif; font-optical-sizing: auto; font-weight: 300; font-size: 30px; color: #C9A15A; white-space: nowrap">Free on-site quote</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px; font-size: 15px">
+            <span class="mb-dot-live" style="width: 8px; height: 8px; border-radius: 50%; background: #EADDC5; flex-shrink: 0" aria-hidden="true"></span>
+            <span style="font-weight: 500; color: #EADDC5">In season now</span>
+            <span style="color: rgba(234, 221, 197, 0.5)" aria-hidden="true">·</span>
+            <span style="font-weight: 400; color: rgba(234, 221, 197, 0.8)">April to November</span>
+          </div>
+          <svg class="mb-chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C9A15A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>
+        </summary>
+        <p class="mb-row-desc" style="margin: 16px 0 0; font-weight: 300; font-size: 17px; line-height: 1.55; max-width: 560px">Mulch, rock, and gravel. Hedge trimming and removal. Bed edging in brick and stone.</p>
+      </details>
+    </div>
+    </div>
+  </div>
+  </section>
+
+  <section id="about" class="mb-about" style="box-sizing: border-box; width: 100%; max-width: 1440px; margin: 0 auto; padding: 0 48px 128px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 96px">
+    <div class="mb-about-photo" style="position: relative; flex: 0 1 560px; min-width: 0; aspect-ratio: 1400 / 920; border-radius: 16px; overflow: hidden; background: #023A1D"><img src="../src/assets/brothers.jpg" alt="The Mangiapane brothers in company shirts on a leaf-covered lawn in fall" style="position: absolute; display: block; max-width: none; width: 155.1%; height: auto; left: -21.4%; top: -48%; object-fit: cover; object-position: 76.8768% 0%"></div>
+    <div class="mb-about-text" style="flex: 0 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 24px">
+      <div style="font-size: 13px; font-weight: 500; letter-spacing: 0.03em; color: #4E220C">ABOUT US</div>
+      <h2 style="margin: 0; font-family: Newsreader, Georgia, serif; font-optical-sizing: auto; font-weight: 300; font-size: 56px; line-height: 1.06; letter-spacing: -0.02em; color: #4E220C; text-wrap: balance">A family name on every property.</h2>
+      <p style="margin: 0; font-weight: 300; font-size: 17px; line-height: 1.6; max-width: 520px; text-wrap: pretty">Russel Mangiapane III started Mangiapane Brothers in 2019. Today the company cares for homes across Livonia and Westland in every season, from weekly lawn care to snow removal.</p>
+      <p style="margin: 0; font-weight: 300; font-size: 17px; line-height: 1.6; max-width: 520px; text-wrap: pretty">The standard is simple. We show up when we say we will, and the work is done right the first time. Our crews are in your neighborhoods every week, so we treat each property the way we would want ours treated.</p>
+      <div style="display: flex; flex-direction: column; gap: 2px; margin-top: 8px; padding-top: 20px; border-top: 1px solid rgba(78, 34, 12, 0.3); max-width: 520px">
+        <span style="font-family: Newsreader, Georgia, serif; font-optical-sizing: auto; font-weight: 300; font-size: 26px; color: #023A1D">Russel Mangiapane III</span>
+        <span style="font-size: 14.5px">Owner</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" style="position: relative; box-sizing: border-box; width: 100%; background: #023A1D; color: #EADDC5; overflow: hidden">
+    <img src="../src/assets/tree-cream.svg" alt="" aria-hidden="true" style="position: absolute; right: -40px; bottom: -80px; height: 560px; width: auto; opacity: 0.07">
+    <div class="mb-contact" style="position: relative; box-sizing: border-box; max-width: 1440px; margin: 0 auto; padding: 128px 48px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 24px">
+      <div class="mb-contact-eyebrow" style="font-size: 13px; font-weight: 500; letter-spacing: 0.03em; color: #C9A15A">ONE CALL, EVERY SEASON</div>
+      <h2 class="mb-reveal" style="margin: 0; font-family: Newsreader, Georgia, serif; font-optical-sizing: auto; font-weight: 300; font-size: 64px; line-height: 1.05; letter-spacing: -0.02em; max-width: 860px">Tell us about your property.</h2>
+      <a class="mb-contact-num" href="tel:+17344502400" style="font-family: Newsreader, Georgia, serif; font-optical-sizing: auto; font-weight: 300; font-size: 44px; color: #C9A15A; text-decoration: none; letter-spacing: -0.01em">(734) 450-2400</a>
+      <div class="mb-contact-btns" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-top: 8px">
+        <a class="mb-btn mb-ghost" href="sms:+17344502400">Send a text</a>
+      </div>
+      <div style="font-size: 15px; margin-top: 8px">Calls and texts answered 9 a.m. to 9 p.m.</div>
+    </div>
+  </section>
+
+  <footer style="box-sizing: border-box; width: 100%; background: #1A1C18; color: #EADDC5">
+    <div class="mb-foot" style="box-sizing: border-box; max-width: 1440px; margin: 0 auto; padding: 56px 48px 40px; display: flex; flex-direction: column; gap: 40px">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px">
+        <img src="../src/assets/logo-horizontal-cream.svg" alt="Mangiapane Brothers Lawn and Snow" style="height: 44px; width: auto">
+        <div style="display: flex; flex-wrap: wrap; gap: 64px; font-size: 15px">
+          <div class="mb-foot-links" style="display: flex; flex-direction: column; gap: 12px">
+            <a href="#services" style="color: #EADDC5; text-decoration: none">Services</a>
+            <a href="#about" style="color: #EADDC5; text-decoration: none">About</a>
+            <a href="#contact" style="color: #EADDC5; text-decoration: none">Contact</a>
+            <a href="https://apps.mangbrothers.com/connect/" style="color: #EADDC5; text-decoration: none">Partner With Us</a>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 12px">
+            <a class="mb-foot-tap" href="tel:+17344502400" style="color: #C9A15A; text-decoration: none; font-weight: 500">(734) 450-2400</a>
+            <a class="mb-foot-tap" href="mailto:admin@mangbrothers.com" style="color: #EADDC5; text-decoration: none">admin@mangbrothers.com</a>
+            <span>Livonia and Westland, Michigan</span>
+          </div>
+        </div>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; padding-top: 24px; border-top: 1px solid rgba(234, 221, 197, 0.15); font-size: 13px">
+        <span>© 2026 Mangiapane Brothers Lawn and Snow LLC</span>
+        <span>Reliable Service. Uncompromising Standards.</span>
+      </div>
+    </div>
+  </footer>
+  <div class="mb-callbar" style="display: none; position: fixed; left: 0; right: 0; bottom: 0; z-index: 10; box-sizing: border-box; padding: 12px 16px 24px; background: #1A1C18; gap: 10px; border-top: 1px solid rgba(201, 161, 90, 0.4)">
+    <a class="mb-btn mb-call" href="tel:+17344502400" style="flex: 2; height: 52px; padding: 0 16px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"></path></svg>(734) 450-2400</a>
+    <a class="mb-btn mb-ghost" href="sms:+17344502400" style="flex: 1; height: 52px; padding: 0 16px">Text</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":4600}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
