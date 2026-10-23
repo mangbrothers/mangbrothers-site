@@ -1,4 +1,12 @@
-.impeccable/critique/
-.impeccable/live/
+# build output
+dist/
+.astro/
+# dependencies
+node_modules/
+# logs
+npm-debug.log*
+# env
+.env
+.env.production
+# os
 .DS_Store
-__pycache__/
