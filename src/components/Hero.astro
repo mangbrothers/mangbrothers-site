@@ -1,15 +1,13 @@
 ---
-import { getImage } from 'astro:assets';
-import heroSrc from '../assets/hero-backyard.jpg';
 import Header from './Header.astro';
 import Button from './Button.astro';
 import { PHONE_DISPLAY, PHONE_TEL } from '../data/services';
+import { getHeroImages } from '../data/hero';
 
 // Background layer (not an <img>): Safari draws a bright seam at the edge of a
 // scaled image layer, so the photo is painted as a clipped background instead.
-const phone = await getImage({ src: heroSrc, width: 900, format: 'webp', quality: 62 });
-const desk = await getImage({ src: heroSrc, width: 1920, format: 'webp', quality: 58 });
-const wide = await getImage({ src: heroSrc, width: 2560, format: 'webp', quality: 55 });
+// The layout preloads these same files in <head>.
+const { phone, desk, wide } = await getHeroImages();
 ---
 <section
   class="hero"
@@ -30,9 +28,6 @@ const wide = await getImage({ src: heroSrc, width: 2560, format: 'webp', quality
     </div>
   </div>
 </section>
-
-<link rel="preload" as="image" href={desk.src} media="(min-width: 761px) and (max-width: 1920px)" />
-<link rel="preload" as="image" href={phone.src} media="(max-width: 760px)" />
 
 <style>
   .hero {
@@ -122,7 +117,8 @@ const wide = await getImage({ src: heroSrc, width: 2560, format: 'webp', quality
     animation-delay: 0.15s;
   }
   .hero-h1 {
-    animation-delay: 0.25s;
+    animation-name: mb-focus;
+    animation-delay: 0.1s;
   }
   .hero-sub {
     animation-delay: 0.4s;
@@ -157,10 +153,12 @@ const wide = await getImage({ src: heroSrc, width: 2560, format: 'webp', quality
     .hero-btns {
       margin-top: 28px;
     }
-    .hero-h1,
     .hero-sub,
     .hero-btns {
       animation-name: mb-lift;
+    }
+    .hero-h1 {
+      animation: mb-slide 0.8s var(--ease-out) both;
     }
   }
 

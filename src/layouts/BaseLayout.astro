@@ -1,7 +1,15 @@
 ---
+import '@fontsource-variable/newsreader/opsz.css';
+import '@fontsource-variable/libre-franklin/wght.css';
 import '../styles/global.css';
+import newsreaderLatin from '@fontsource-variable/newsreader/files/newsreader-latin-opsz-normal.woff2?url';
+import franklinLatin from '@fontsource-variable/libre-franklin/files/libre-franklin-latin-wght-normal.woff2?url';
 import { getImage } from 'astro:assets';
 import heroSrc from '../assets/hero-backyard.jpg';
+import { getHeroImages } from '../data/hero';
+
+const hero = await getHeroImages();
+const verification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION ?? '';
 
 interface Props {
   title: string;
@@ -49,12 +57,12 @@ const jsonLd = {
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;500;600&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&display=swap"
-    />
+    <link rel="preload" as="image" href={hero.phone.src} media="(max-width: 760px)" fetchpriority="high" />
+    <link rel="preload" as="image" href={hero.desk.src} media="(min-width: 761px) and (max-width: 1920px)" fetchpriority="high" />
+    <link rel="preload" as="image" href={hero.wide.src} media="(min-width: 1921px)" fetchpriority="high" />
+    <link rel="preload" as="font" type="font/woff2" href={franklinLatin} crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href={newsreaderLatin} crossorigin />
+    {verification && <meta name="google-site-verification" content={verification} />}
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
   <body>

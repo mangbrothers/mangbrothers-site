@@ -20,8 +20,8 @@
   --cream-06: rgba(234, 221, 197, 0.06);
   --shade: rgba(26, 28, 24, 0.45);
 
-  --font-display: 'Newsreader', Georgia, serif;
-  --font-sans: 'Libre Franklin', Arial, sans-serif;
+  --font-display: 'Newsreader Variable', Georgia, serif;
+  --font-sans: 'Libre Franklin Variable', Arial, sans-serif;
 
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-btn: cubic-bezier(0.1, 0.4, 0.2, 1);
@@ -145,6 +145,25 @@ a:hover {
   to {
     opacity: 1;
     transform: none;
+  }
+}
+/* Transform-only rise: keeps the headline painted from the first frame (LCP). */
+@keyframes mb-slide {
+  from {
+    transform: translateY(14px);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes mb-focus {
+  from {
+    transform: translateY(14px);
+    filter: blur(6px);
+  }
+  to {
+    transform: none;
+    filter: none;
   }
 }
 @keyframes mb-fade {
