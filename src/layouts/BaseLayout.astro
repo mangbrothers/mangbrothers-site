@@ -9,7 +9,8 @@ import heroSrc from '../assets/hero-backyard.jpg';
 import { getHeroImages } from '../data/hero';
 
 const hero = await getHeroImages();
-const verification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION ?? '';
+// Google Search Console ownership token.
+const verification = 'IhGJo_uNv2l3aS65X7T6PFVZfJiGTKQZQ3GTb1MDZaY';
 
 interface Props {
   title: string;
