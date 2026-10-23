@@ -1,0 +1,98 @@
+---
+import tree from '../assets/tree-cream.svg';
+import Button from './Button.astro';
+import { PHONE_DISPLAY, PHONE_TEL, PHONE_SMS } from '../data/services';
+---
+<section id="contact" class="contact">
+  <img src={tree.src} alt="" aria-hidden="true" class="tree" width="560" height="560" loading="lazy" />
+  <div class="inner">
+    <p class="eyebrow label">One call, every season</p>
+    <h2 class="display h2 reveal">Tell us about your property.</h2>
+    <a class="num reveal" href={PHONE_TEL}>{PHONE_DISPLAY}</a>
+    <div class="btns">
+      <Button href={PHONE_SMS} variant="ghost">Send a text</Button>
+    </div>
+    <p class="hours">Calls and texts answered 9 a.m. to 9 p.m.</p>
+  </div>
+</section>
+
+<style>
+  .contact {
+    position: relative;
+    width: 100%;
+    background: var(--oak);
+    color: var(--cream);
+    overflow: hidden;
+  }
+  .tree {
+    position: absolute;
+    right: -40px;
+    bottom: -80px;
+    height: 560px;
+    width: auto;
+    max-width: none;
+    opacity: 0.07;
+    pointer-events: none;
+  }
+  .inner {
+    position: relative;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 128px var(--gutter);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 24px;
+  }
+  .label {
+    margin: 0;
+    color: var(--gold);
+  }
+  .h2 {
+    font-size: 64px;
+    line-height: 1.05;
+    max-width: 860px;
+  }
+  .num {
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-size: 44px;
+    color: var(--gold);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+  .num:hover {
+    color: var(--cream);
+  }
+  .btns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 8px;
+  }
+  .hours {
+    margin: 8px 0 0;
+    font-size: 15px;
+  }
+
+  @media (max-width: 760px) {
+    .inner {
+      padding: 72px 24px;
+      gap: 20px;
+    }
+    .h2 {
+      font-size: 40px;
+    }
+    .label,
+    .btns {
+      display: none;
+    }
+    .num {
+      font-size: 36px;
+      padding: 4px 0;
+    }
+  }
+</style>

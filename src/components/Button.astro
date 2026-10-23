@@ -1,0 +1,106 @@
+---
+import PhoneIcon from './PhoneIcon.astro';
+
+interface Props {
+  href: string;
+  variant?: 'call' | 'ghost' | 'call-light';
+  icon?: 'phone';
+  class?: string;
+}
+const { href, variant = 'call', icon, class: className } = Astro.props;
+---
+<a href={href} class:list={['btn', `btn--${variant}`, className]}>
+  {icon === 'phone' && <PhoneIcon class="btn__icon" />}
+  <slot />
+</a>
+
+<style>
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    position: relative;
+    min-height: 48px;
+    border-radius: 4px;
+    padding: 15px 27px;
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: transparent;
+    transition:
+      background-color 0.25s var(--ease-btn),
+      transform 0.25s var(--ease-btn),
+      box-shadow 0.25s var(--ease-btn);
+  }
+  .btn :global(.btn__icon) {
+    margin-left: -3px;
+    transform: translateY(1px);
+    stroke: var(--gold);
+  }
+  .btn:hover {
+    transform: translateY(-1px);
+  }
+  .btn:active {
+    transform: translateY(2px) scale(0.985);
+    transition-duration: 0.08s;
+  }
+  .btn:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+  }
+
+  .btn--call,
+  .btn--call:hover,
+  .btn--call:active {
+    color: var(--cream);
+  }
+  .btn--call {
+    border: 1px solid var(--gold);
+  }
+  .btn--call:hover {
+    background: var(--cream-10);
+    box-shadow:
+      inset 0 -1.5px 0 var(--gold),
+      0 6px 16px rgba(26, 28, 24, 0.16);
+  }
+
+  .btn--ghost,
+  .btn--ghost:hover,
+  .btn--ghost:active {
+    color: var(--cream);
+  }
+  .btn--ghost {
+    border: 1px solid var(--cream-60);
+  }
+  .btn--ghost:hover {
+    background: var(--cream-10);
+  }
+
+  .btn--call-light,
+  .btn--call-light:hover,
+  .btn--call-light:active {
+    color: var(--brown);
+  }
+  .btn--call-light {
+    border: 1px solid var(--brown);
+    box-shadow: inset 0 -1px 0 var(--gold);
+  }
+  .btn--call-light:hover {
+    background: rgba(78, 34, 12, 0.05);
+    box-shadow:
+      inset 0 -2px 0 var(--gold),
+      0 6px 16px rgba(26, 28, 24, 0.16);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn,
+    .btn:hover,
+    .btn:active {
+      transform: none;
+    }
+  }
+</style>

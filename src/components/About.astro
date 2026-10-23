@@ -1,0 +1,142 @@
+---
+import { Image } from 'astro:assets';
+import brothers from '../assets/brothers.jpg';
+---
+<section id="about" class="about">
+  <div class="photo">
+    <Image
+      src={brothers}
+      alt="The Mangiapane brothers in company shirts on a leaf-covered lawn in fall"
+      widths={[600, 900, 1086]}
+      sizes="(max-width: 760px) 140vw, 870px"
+      loading="lazy"
+      class="photo-img"
+    />
+  </div>
+  <div class="text reveal">
+    <p class="eyebrow label">About us</p>
+    <h2 class="display h2">A family name on every property.</h2>
+    <p>Russel Mangiapane III started Mangiapane Brothers in 2019. Today the company cares for homes across Livonia and Westland in every season, from weekly lawn care to snow removal.</p>
+    <p>The standard is simple. We show up when we say we will, and the work is done right the first time. Our crews are in your neighborhoods every week, so we treat each property the way we would want ours treated.</p>
+    <div class="sig">
+      <span class="sig-name">Russel Mangiapane III</span>
+      <span class="sig-role">Owner</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 var(--gutter) 128px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 96px;
+  }
+  .photo {
+    position: relative;
+    flex: 0 1 560px;
+    min-width: 0;
+    aspect-ratio: 1400 / 920;
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--oak);
+  }
+  /* Crop waist-up: keep these values in sync with design/home-reference.html */
+  .photo :global(.photo-img) {
+    position: absolute;
+    max-width: none;
+    width: 155.1%;
+    height: auto;
+    left: -21.4%;
+    top: -48%;
+  }
+  .text {
+    flex: 0 1 520px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .label {
+    margin: 0;
+    color: var(--brown);
+  }
+  .h2 {
+    font-size: 56px;
+    line-height: 1.06;
+    color: var(--brown);
+    text-wrap: balance;
+  }
+  .text p:not(.label) {
+    margin: 0;
+    font-size: 17px;
+    line-height: 1.6;
+    max-width: 520px;
+    text-wrap: pretty;
+  }
+  .sig {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-top: 8px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(78, 34, 12, 0.3);
+    max-width: 520px;
+  }
+  .sig-name {
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-size: 26px;
+    color: var(--oak);
+  }
+  .sig-role {
+    font-size: 14.5px;
+  }
+
+  @keyframes unveil {
+    from {
+      clip-path: inset(10% 6% 10% 6% round 16px);
+    }
+    to {
+      clip-path: inset(0 0 0 0 round 16px);
+    }
+  }
+  @supports (animation-timeline: view()) {
+    .photo {
+      animation: unveil linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 40%;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .about {
+      padding: 72px 16px;
+      gap: 32px;
+    }
+    .photo {
+      flex: 1 1 100%;
+      border-radius: 12px;
+    }
+    .text {
+      flex: 1 1 100%;
+      padding: 0 8px;
+      gap: 20px;
+    }
+    .h2 {
+      font-size: 40px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .photo {
+      animation: none;
+    }
+  }
+</style>

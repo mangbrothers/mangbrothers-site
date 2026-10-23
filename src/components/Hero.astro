@@ -1,0 +1,178 @@
+---
+import { getImage } from 'astro:assets';
+import heroSrc from '../assets/hero-backyard.jpg';
+import Header from './Header.astro';
+import Button from './Button.astro';
+import { PHONE_DISPLAY, PHONE_TEL } from '../data/services';
+
+// Background layer (not an <img>): Safari draws a bright seam at the edge of a
+// scaled image layer, so the photo is painted as a clipped background instead.
+const phone = await getImage({ src: heroSrc, width: 900, format: 'webp', quality: 62 });
+const desk = await getImage({ src: heroSrc, width: 1920, format: 'webp', quality: 58 });
+const wide = await getImage({ src: heroSrc, width: 2560, format: 'webp', quality: 55 });
+---
+<section
+  class="hero"
+  style={`--hero-phone:url(${phone.src});--hero-desk:url(${desk.src});--hero-wide:url(${wide.src})`}
+>
+  <div class="hero-bg" role="img" aria-label="A manicured backyard lawn and garden beds at golden hour"></div>
+  <div class="hero-shade" aria-hidden="true"></div>
+
+  <Header />
+
+  <div class="hero-copy" id="main">
+    <p class="eyebrow hero-eyebrow">Reliable Service. Uncompromising Standards.</p>
+    <h1 class="display hero-h1">Full-service property maintenance for those who take pride in their home.</h1>
+    <p class="hero-sub">Lawn, fall cleanup, snow, Christmas lights, and landscaping in Livonia and Westland.</p>
+    <div class="hero-btns">
+      <Button href={PHONE_TEL} icon="phone">{PHONE_DISPLAY}</Button>
+      <Button href="#services" variant="ghost" class="hero-ghost">Our services</Button>
+    </div>
+  </div>
+</section>
+
+<link rel="preload" as="image" href={desk.src} media="(min-width: 761px) and (max-width: 1920px)" />
+<link rel="preload" as="image" href={phone.src} media="(max-width: 760px)" />
+
+<style>
+  .hero {
+    position: relative;
+    z-index: 0;
+    isolation: isolate;
+    width: 100%;
+    min-height: 640px;
+    height: min(900px, calc(100vh - 60px));
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background: var(--charcoal);
+    color: var(--cream);
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background: var(--charcoal) var(--hero-desk) 50% 70% / cover no-repeat;
+    animation: settle 2.2s var(--ease-out) both;
+  }
+  @media (min-width: 1921px) {
+    .hero-bg {
+      background-image: var(--hero-wide);
+    }
+  }
+  .hero-shade {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--shade);
+  }
+  @keyframes settle {
+    from {
+      transform: scale(1.06);
+    }
+    to {
+      transform: none;
+    }
+  }
+
+  .hero-copy {
+    position: relative;
+    flex-grow: 1;
+    padding: 0 var(--gutter) 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .hero-eyebrow {
+    margin: 0 0 22px;
+    color: var(--cream);
+    text-wrap: balance;
+  }
+  .hero-h1 {
+    font-size: 70px;
+    line-height: 1.04;
+    color: var(--cream);
+    max-width: 1120px;
+    text-wrap: balance;
+  }
+  .hero-sub {
+    margin: 20px 0 0;
+    font-size: 18px;
+    line-height: 1.55;
+    max-width: 760px;
+    text-wrap: balance;
+  }
+  .hero-btns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 36px;
+  }
+
+  .hero-eyebrow,
+  .hero-h1,
+  .hero-sub,
+  .hero-btns {
+    animation: mb-rise 0.8s var(--ease-out) both;
+  }
+  .hero-eyebrow {
+    animation-delay: 0.15s;
+  }
+  .hero-h1 {
+    animation-delay: 0.25s;
+  }
+  .hero-sub {
+    animation-delay: 0.4s;
+  }
+  .hero-btns {
+    animation-delay: 0.52s;
+  }
+
+  @media (max-width: 760px) {
+    .hero {
+      height: 560px;
+      min-height: 0;
+    }
+    .hero-bg {
+      background-image: var(--hero-phone);
+      animation: none;
+    }
+    .hero-copy {
+      padding: 0 20px 112px;
+    }
+    .hero-eyebrow,
+    .hero-btns :global(.hero-ghost) {
+      display: none;
+    }
+    .hero-h1 {
+      font-size: 38px;
+      line-height: 1.08;
+    }
+    .hero-sub {
+      font-size: 17px;
+    }
+    .hero-btns {
+      margin-top: 28px;
+    }
+    .hero-h1,
+    .hero-sub,
+    .hero-btns {
+      animation-name: mb-lift;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-bg {
+      animation: none;
+    }
+    .hero-eyebrow,
+    .hero-h1,
+    .hero-sub,
+    .hero-btns {
+      animation: mb-fade 0.6s ease both;
+    }
+  }
+</style>

@@ -1,0 +1,181 @@
+/* Mangiapane Brothers design tokens (design/design-system/tokens.json) */
+:root {
+  --oak: #023a1d;
+  --leaf: #166b3b;
+  --brown: #4e220c;
+  --charcoal: #1a1c18;
+  --cream: #eaddc5;
+  --paper: #f4ede0;
+  --gold: #c9a15a;
+
+  --cream-80: rgba(234, 221, 197, 0.8);
+  --cream-60: rgba(234, 221, 197, 0.6);
+  --cream-50: rgba(234, 221, 197, 0.5);
+  --cream-35: rgba(234, 221, 197, 0.35);
+  --cream-25: rgba(234, 221, 197, 0.25);
+  --cream-20: rgba(234, 221, 197, 0.2);
+  --cream-16: rgba(234, 221, 197, 0.16);
+  --cream-15: rgba(234, 221, 197, 0.15);
+  --cream-10: rgba(234, 221, 197, 0.1);
+  --cream-06: rgba(234, 221, 197, 0.06);
+  --shade: rgba(26, 28, 24, 0.45);
+
+  --font-display: 'Newsreader', Georgia, serif;
+  --font-sans: 'Libre Franklin', Arial, sans-serif;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-btn: cubic-bezier(0.1, 0.4, 0.2, 1);
+
+  --gutter: 48px;
+  --bp-phone: 760px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--cream);
+  font-family: var(--font-sans);
+  font-weight: 300;
+  color: var(--charcoal);
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: var(--brown);
+}
+a:hover {
+  color: var(--oak);
+}
+
+::selection {
+  background: var(--gold);
+  color: var(--charcoal);
+}
+
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.display {
+  margin: 0;
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+
+.eyebrow {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: -60px;
+  z-index: 100;
+  padding: 12px 18px;
+  border-radius: 4px;
+  background: var(--cream);
+  color: var(--oak);
+  font-weight: 500;
+  text-decoration: none;
+}
+.skip-link:focus {
+  top: 16px;
+}
+
+#services,
+#about,
+#contact,
+[id^='svc-'] {
+  scroll-margin-top: 80px;
+}
+
+@media (max-width: 760px) {
+  #services,
+  #about,
+  #contact,
+  [id^='svc-'] {
+    scroll-margin-top: 48px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Shared keyframes */
+@keyframes mb-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+@keyframes mb-lift {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes mb-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes mb-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Scroll reveals: only where supported, content stays visible elsewhere */
+@supports (animation-timeline: view()) {
+  .reveal {
+    animation: mb-in linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 70%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    animation: none !important;
+  }
+}

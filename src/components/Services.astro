@@ -1,0 +1,266 @@
+---
+import tree from '../assets/tree-cream.svg';
+import Button from './Button.astro';
+import ServiceRow from './ServiceRow.astro';
+import { services, seasonNote, PHONE_DISPLAY, PHONE_TEL } from '../data/services';
+---
+<section id="services" class="svc">
+  <div class="card">
+    <nav class="band" aria-label="Jump to a service">
+      {
+        services.map((s, i) => (
+          <>
+            {i > 0 && <span class="band-dot" aria-hidden="true" />}
+            <a href={`#${s.id}`} class="band-link">{s.band}</a>
+          </>
+        ))
+      }
+    </nav>
+
+    <div class="panel">
+      <img src={tree.src} alt="" aria-hidden="true" class="tree" width="720" height="720" loading="lazy" />
+      <div class="intro">
+        <p class="eyebrow intro-eyebrow">Services</p>
+        <h2 class="display intro-h2">Every season, taken care of.</h2>
+        <p class="intro-p">Each service is priced up front and scheduled in advance. Call once and your property is handled from spring to the last snowfall.</p>
+        <Button href={PHONE_TEL} icon="phone" class="intro-call">{PHONE_DISPLAY}</Button>
+        <div class="season">
+          <span class="season-label">This season</span>
+          <p>{seasonNote}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="list">
+      <span class="divider" aria-hidden="true"></span>
+      <div class="rows">
+        {services.map((s) => <ServiceRow service={s} />)}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Phones: collapse the service rows on load; desktop: keep them open and out of tab order.
+  const rows = document.querySelectorAll<HTMLDetailsElement>('details.row');
+  const phone = window.matchMedia('(max-width: 760px)');
+  const apply = () => {
+    rows.forEach((d) => {
+      const s = d.querySelector('summary');
+      if (phone.matches) {
+        s?.removeAttribute('tabindex');
+      } else {
+        d.open = true;
+        s?.setAttribute('tabindex', '-1');
+      }
+    });
+  };
+  if (phone.matches) rows.forEach((d) => (d.open = false));
+  apply();
+  phone.addEventListener('change', apply);
+  // Desktop: block toggling via keyboard/clicks.
+  rows.forEach((d) =>
+    d.addEventListener('toggle', () => {
+      if (!phone.matches && !d.open) d.open = true;
+    }),
+  );
+  // Jump links on phones open the target row.
+  document.querySelectorAll<HTMLAnchorElement>('a[href^="#svc-"]').forEach((a) =>
+    a.addEventListener('click', () => {
+      const t = document.querySelector<HTMLDetailsElement>(a.getAttribute('href')!);
+      if (t) t.open = true;
+    }),
+  );
+</script>
+
+<style>
+  .svc {
+    width: 100%;
+    padding: 0 var(--gutter) 48px;
+    margin-top: -60px;
+    position: relative;
+    z-index: 2;
+    animation: mb-lift 0.9s var(--ease-out) 0.6s backwards;
+  }
+  .card {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    background: var(--oak);
+    color: var(--cream);
+    border-radius: 20px;
+    overflow: clip;
+  }
+
+  .band {
+    flex: 1 1 100%;
+    padding: 24px 64px;
+    border-bottom: 1px solid var(--cream-15);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 12px 32px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .band-link {
+    color: var(--cream);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .band-link:hover {
+    color: var(--gold);
+    text-decoration: underline;
+    text-underline-offset: 6px;
+  }
+  .band-dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+
+  .panel {
+    position: relative;
+    overflow: clip;
+    flex: 0 1 520px;
+    min-width: 0;
+    padding: 32px 48px 64px 64px;
+  }
+  .tree {
+    position: absolute;
+    left: -120px;
+    bottom: -60px;
+    width: 720px;
+    height: auto;
+    max-width: none;
+    opacity: 0.08;
+    pointer-events: none;
+  }
+  .intro {
+    position: sticky;
+    top: 48px;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    padding: 40px 36px;
+    border-radius: 14px;
+    background: var(--cream-06);
+    border: 1px solid var(--cream-16);
+  }
+  .intro-eyebrow {
+    margin: 0;
+    color: var(--gold);
+  }
+  .intro-h2 {
+    font-size: 56px;
+    line-height: 1.06;
+    color: var(--cream);
+  }
+  .intro-p {
+    margin: 0;
+    font-size: 17px;
+    line-height: 1.55;
+    max-width: 400px;
+  }
+  .intro :global(.intro-call) {
+    align-self: flex-start;
+    margin-top: 8px;
+  }
+  .season {
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid var(--cream-25);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 400px;
+  }
+  .season-label {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--gold);
+  }
+  .season p {
+    margin: 0;
+    font-size: 17px;
+    line-height: 1.55;
+  }
+
+  .list {
+    flex: 1 1 600px;
+    min-width: 0;
+    padding: 8px 64px 64px 72px;
+    position: relative;
+  }
+  .divider {
+    position: absolute;
+    left: 0;
+    top: 32px;
+    bottom: 64px;
+    width: 1px;
+    background: var(--cream-20);
+  }
+  .rows {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid var(--cream-20);
+  }
+
+  @media (max-width: 760px) {
+    .svc {
+      padding: 0;
+      margin-top: -24px;
+      animation: none;
+    }
+    .card {
+      border-radius: 20px 20px 0 0;
+    }
+    .band,
+    .divider,
+    .intro-p,
+    .intro :global(.intro-call) {
+      display: none;
+    }
+    .panel {
+      flex: 1 1 100%;
+      padding: 48px 24px 8px;
+    }
+    .tree {
+      width: 380px;
+      left: auto;
+      right: -80px;
+      bottom: -40px;
+    }
+    .intro {
+      position: static;
+      padding: 0;
+      background: none;
+      border: none;
+      gap: 16px;
+    }
+    .intro-h2 {
+      font-size: 40px;
+    }
+    .season {
+      margin-top: 8px;
+      padding-top: 20px;
+    }
+    .season p {
+      font-size: 16px;
+    }
+    .list {
+      padding: 8px 24px 40px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .svc {
+      animation: none;
+    }
+  }
+</style>

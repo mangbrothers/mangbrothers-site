@@ -1,0 +1,197 @@
+---
+import type { Service } from '../data/services';
+import { statusLabel } from '../data/services';
+
+interface Props {
+  service: Service;
+}
+const { service } = Astro.props;
+const live = service.status === 'in-season';
+---
+<details open id={service.id} class="row reveal">
+  <summary class="row-sum">
+    <div class="row-top">
+      <h3 class="display row-name">{service.name}</h3>
+      <span class="leader" aria-hidden="true"></span>
+      <span class="row-price">{service.price}</span>
+    </div>
+    <div class="row-status">
+      <span class:list={['dot', live ? 'dot--live' : 'dot--booking']} aria-hidden="true"></span>
+      <span class="status-label">{statusLabel[service.status]}</span>
+      <span class="sep" aria-hidden="true">·</span>
+      <span class="status-note">{service.note}</span>
+    </div>
+    <svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>
+  </summary>
+  <p class="row-desc">{service.description}</p>
+</details>
+
+<style>
+  .row {
+    display: block;
+    padding: 40px 0;
+    border-top: 1px solid var(--cream-20);
+    color: var(--cream);
+  }
+  .row:first-child {
+    border-top: none;
+  }
+  .row-sum {
+    position: relative;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .row-sum::-webkit-details-marker {
+    display: none;
+  }
+  .row-top {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+  }
+  .row-name {
+    font-size: 44px;
+    line-height: 1.08;
+    color: var(--cream);
+    white-space: nowrap;
+    transition: transform 0.35s var(--ease-out);
+  }
+  .leader {
+    flex: 1;
+    min-width: 24px;
+    border-bottom: 1.5px dotted var(--cream-35);
+    transform: translateY(-8px);
+    transition: border-color 0.35s;
+  }
+  .row-price {
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-size: 30px;
+    color: var(--gold);
+    white-space: nowrap;
+    transition: transform 0.35s var(--ease-out);
+  }
+  .row-status {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+  }
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .dot--live {
+    background: var(--cream);
+    animation: pulse 2.4s var(--ease-out) infinite;
+  }
+  .dot--booking {
+    background: var(--gold);
+  }
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(234, 221, 197, 0.45);
+    }
+    70%,
+    100% {
+      box-shadow: 0 0 0 7px rgba(234, 221, 197, 0);
+    }
+  }
+  .status-label {
+    font-weight: 500;
+  }
+  .sep {
+    color: var(--cream-50);
+  }
+  .status-note {
+    font-weight: 400;
+    color: var(--cream-80);
+  }
+  .chev {
+    display: none;
+    color: var(--gold);
+  }
+  .row-desc {
+    margin: 16px 0 0;
+    font-size: 17px;
+    line-height: 1.55;
+    max-width: 560px;
+  }
+
+  /* Desktop: rows always open, summary is not interactive */
+  @media (min-width: 761px) {
+    .row-sum {
+      pointer-events: none;
+    }
+  }
+  @media (hover: hover) and (min-width: 761px) {
+    .row:hover .leader {
+      border-bottom-color: rgba(201, 161, 90, 0.7);
+    }
+    .row:hover .row-name {
+      transform: translateX(6px);
+    }
+    .row:hover .row-price {
+      transform: translateX(-4px);
+    }
+  }
+
+  @media (max-width: 760px) {
+    .row {
+      padding: 24px 0;
+    }
+    .row-sum {
+      cursor: pointer;
+      gap: 10px;
+      padding-right: 36px;
+    }
+    .row-top {
+      flex-direction: column;
+      gap: 4px;
+    }
+    .leader {
+      display: none;
+    }
+    .row-name {
+      font-size: 30px;
+      white-space: normal;
+    }
+    .row-price {
+      font-size: 20px;
+    }
+    .chev {
+      display: block;
+      position: absolute;
+      right: 0;
+      top: 10px;
+      transition: transform 0.25s var(--ease-btn);
+    }
+    .row[open] .chev {
+      transform: rotate(180deg);
+    }
+    .row-desc {
+      font-size: 16px;
+      margin-top: 12px;
+    }
+    .row[open] .row-desc {
+      animation: mb-lift 0.4s var(--ease-out) both;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .dot--live,
+    .row-desc {
+      animation: none !important;
+    }
+    .row-name,
+    .row-price {
+      transform: none !important;
+    }
+  }
+</style>
